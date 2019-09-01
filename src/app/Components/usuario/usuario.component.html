@@ -1,0 +1,82 @@
+<form [formGroup]="form">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <p-fieldset legend="Gestiòn de usuario">
+                <div class="p-grid p-align-end vertical-container">
+
+
+                    <div class="p-col-3">
+                        <span class="ui-float-label">
+                            <p-dropdown formControlName="tipo_documento" [options]="cities1"></p-dropdown>
+                        </span>
+                    </div>
+
+                    <div class="p-col-3">
+                        <span class="ui-float-label">
+                        <!-- <input type="text" pInputText placeholder="Username" class="ng-dirty ng-invalid"> -->
+                        <input  [ngClass]="{'ng-invalid': !form.controls['numero'].valid }" formControlName="numero" type="text" size="30" pInputText>
+                        <label for="float-input">Nùmero de documento</label>
+                        <p-message *ngIf="form.controls['numero'].invalid" severity="error" text="Field is required"></p-message>
+                        </span>
+                    </div>
+
+
+                    <div class="p-col-3">
+                        <span class="ui-float-label">
+                            <input formControlName="nombre" type="text" size="30" pInputText>
+                            <label for="float-input">Nombres</label>
+                        <p-message *ngIf="form.controls['nombre'].invalid" severity="error" text="Field is required"></p-message>
+
+                        </span>
+                    </div>
+
+                    <div class="p-col-3">
+                        <span class="ui-float-label">
+                            <input formControlName="apellido" type="text" size="30" pInputText>
+                            <label for="float-input">Apellidos</label>
+                        <p-message *ngIf="form.controls['apellido'].invalid" severity="error" text="Field is required"></p-message>
+
+                        </span>
+                    </div>
+
+                    <div class="p-col-3">
+                        <span class="ui-float-label">
+                            <p-calendar formControlName="fecha_nacimiento"></p-calendar>
+                            <label for="float-input">Fecha de nacimiento</label>
+                        <p-message *ngIf="form.controls['fecha_nacimiento'].invalid" severity="error" text="Field is required"></p-message>
+
+                        </span>
+                    </div>
+
+
+                    <div class="p-col-3">
+                        <p-dropdown formControlName="lugar_nacimiento" [options]="lugar1"></p-dropdown>
+                        <p-message *ngIf="form.controls['lugar_nacimiento'].invalid" severity="error" text="Field is required"></p-message>
+
+                    </div>
+
+                    <div class="p-col-3">
+                        <span class="ui-float-label">
+                            <p-calendar formControlName="fecha_expediccion"></p-calendar>
+                            <label for="float-input">Fecha de expediccion</label>
+                        <p-message *ngIf="form.controls['fecha_expediccion'].invalid" severity="error" text="Field is required"></p-message>
+
+                        </span>
+                    </div>
+
+                    <div class="p-col-3">
+                        <span class="ui-float-label">
+                            <input type="number" size="30" pInputText formControlName="edad">
+                            <label for="float-input">Edad</label>
+                        <p-message *ngIf="form.controls['edad'].invalid" severity="error" text="Field is required"></p-message>
+
+                        </span>
+                    </div>
+                    <button pButton type="button" label="Guardar" (click)="handleClick($event)"></button>
+                </div>
+            </p-fieldset>
+        </div>
+
+    </div>
+
+</form>

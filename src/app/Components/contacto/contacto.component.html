@@ -1,0 +1,42 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-fieldset legend="Lista de usuaios">
+            <div class="p-grid vertical-container">
+                <div class="p-col p-col-align-start">
+                    <p class="box">
+                        <button pButton type="button" label="Crear" routerLink="/crear"></button>
+                    </p>
+                </div>
+
+            </div>
+            <div class="p-col-12">
+
+                <p-table [value]="listData">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+
+                            <th>Accion</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-listData>
+                        <tr>
+                            <td>{{ listData.nombre }}</td>
+                            <td>{{ listData.apellido }}</td>
+                            <td>{{ listData.numero }}</td>
+                            <td>
+                                <button [routerLink]="['/crear',listData.id]" class="ui-button-warning" pButton type="button" icon="pi pi-check" label="Editar"></button>
+                                <button class="ui-button-danger" pButton type="button" icon="pi pi-check" label="Eliminar"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+        </p-fieldset>
+
+    </div>
+</div>

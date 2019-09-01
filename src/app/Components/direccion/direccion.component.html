@@ -1,0 +1,74 @@
+<form [formGroup]="form">
+
+    <div class="form-row">
+
+
+        <div class="form-row">
+            <div class="col-md-12 mb-12">
+                <label for="validationTooltip03"><small>SU DIRECION ES</small> </label>
+                <input formControlName="valor" type="email" class="form-control form-control-sm" disabled>
+
+            </div>
+
+
+            <div class="col-md-3 mb-3">
+                <label for="validationTooltip04"><small>Letra</small></label>
+                <input [ngClass]="{'is-invalid': !form.controls['letra1'].valid }" formControlName="letra1" type="text" class="form-control">
+
+
+                <div class="invalid-feedback">
+                    Please provide a valid state.
+                </div>
+            </div>
+
+
+            <div class="col-md-2 mb-2">
+                <label for="validationTooltip03"><small>NUMERO</small></label>
+                <input [ngClass]="{'is-invalid': !form.controls['numero1'].valid }" formControlName="numero1" type="text" class="form-control">
+
+
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+            </div>
+
+            <div class="col-md-2 mb-2">
+                <label for="validationTooltip05"><small>Letra</small></label>
+                <input [ngClass]="{'is-invalid': !form.controls['letra2'].valid }" formControlName="letra2" type="text" class="form-control">
+
+
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+            <div class="col-1">
+                <label for="validationTooltip05"><small>NUMERO</small></label>
+                <input [ngClass]="{'is-invalid': !form.controls['numero2'].valid }" formControlName="numero2" type="text" class="form-control">
+
+
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+            <div class="col-md-2 mb-2">
+                <label for="validationTooltip05"><small>Letra</small></label>
+                <input [ngClass]="{'is-invalid': !form.controls['letra3'].valid }" formControlName="letra3" type="text" class="form-control">
+
+
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+            <div class="col-1">
+                <label for="validationTooltip05"><small>NUMERO</small></label>
+                <input [ngClass]="{'is-invalid': !form.controls['numero3'].valid }" formControlName="numero3" type="text" class="form-control">
+
+
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
