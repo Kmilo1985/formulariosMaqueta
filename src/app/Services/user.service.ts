@@ -13,8 +13,14 @@ export class UserService {
   public crearServUsuario(user: UserModel): Observable<UserModel> {
     return this.http.post<UserModel>(this.urlApi, user);
   }
+  public consultarPorId(id: any): Observable<UserModel> {
+    return this.http.get<UserModel>(this.urlApi + '/' + id);
+  }
   public listarUsuario(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(this.urlApi);
+  }
+  public updateServUser(user: UserModel): Observable<UserModel> {
+    return this.http.put<UserModel>(this.urlApi + '/' + user.id, user);
   }
 
 }

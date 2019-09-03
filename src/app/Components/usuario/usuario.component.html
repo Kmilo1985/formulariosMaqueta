@@ -7,7 +7,7 @@
 
                     <div class="p-col-3">
                         <span class="ui-float-label">
-                            <p-dropdown formControlName="tipo_documento" [options]="cities1"></p-dropdown>
+                            <p-dropdown id="tipo_documento" formControlName="tipo_documento" [options]="cities1"></p-dropdown>
                         </span>
                     </div>
 
@@ -72,7 +72,7 @@
 
                         </span>
                     </div>
-                    <button pButton type="button" label="Guardar" (click)="handleClick($event)"></button>
+                    <button pButton type="button" label="Guardar" (click)="guardarUser()"></button>
                 </div>
             </p-fieldset>
         </div>
