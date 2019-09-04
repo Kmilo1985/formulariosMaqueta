@@ -23,4 +23,9 @@ export class UserService {
     return this.http.put<UserModel>(this.urlApi + '/' + user.id, user);
   }
 
+  public eliminarUser(user: UserModel): Observable<UserModel> {
+    return this.http.delete<UserModel>(this.urlApi + '/' + user.id);
+
+  }
+
 }
