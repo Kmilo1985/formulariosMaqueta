@@ -30,6 +30,7 @@ export class TablaUserComponent implements OnInit {
   eliminarUser(user: UserModel) {
     this._serviceUser.eliminarUser(user).subscribe(data => {
       console.log('elimino');
+      this.listarUser();
     });
 
   }

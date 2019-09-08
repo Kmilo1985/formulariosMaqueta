@@ -15,12 +15,16 @@ export class UsuarioComponent implements OnInit {
   user = new UserModel();
   form: FormGroup;
   cities1: SelectItem[];
+  asigCities1: SelectItem[];
+
   selectedCity1: City;
   // fecha
   value: Date;
 
   // lugar de nacimiento
   lugar1: SelectItem[];
+  Asinglugar1: SelectItem[];
+
   selectedLugar1: Lugar;
 
   constructor(
@@ -62,12 +66,24 @@ export class UsuarioComponent implements OnInit {
     if (id !== 'nuevo') {
       this._serviceUser.consultarPorId(id).subscribe(resp => {
         this.user = resp;
-        this.form.get('tipo_documento').setValue(this.user.tipo_documento);
+        this.asigCities1 = this.cities1.filter(tipoD => {
+          if (tipoD.label === this.user.tipo_documento) {
+            return tipoD;
+          }
+        });
+        this.form.get('tipo_documento').setValue(this.asigCities1);
         this.form.get('numero').setValue(this.user.numero);
         this.form.get('nombre').setValue(this.user.nombre);
         this.form.get('apellido').setValue(this.user.apellido);
         this.form.get('fecha_nacimiento').setValue(this.user.fecha_nacimiento);
-        this.form.get('lugar_nacimiento').setValue(this.user.lugar_nacimiento);
+        this.Asinglugar1 = this.lugar1.filter(lugarNacimiento => {
+          if (lugarNacimiento.label === this.user.lugar_nacimiento) {
+        console.log(lugarNacimiento);
+        this.form.get('lugar_nacimiento').setValue(lugarNacimiento);
+            return lugarNacimiento;
+          }
+        });
+        console.log(this.Asinglugar1);
         this.form.get('fecha_expediccion').setValue(this.user.fecha_expediccion);
         this.form.get('edad').setValue(this.user.edad);
 
