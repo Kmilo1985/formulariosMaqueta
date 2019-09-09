@@ -27,9 +27,10 @@ import { TablaUserComponent } from './Components/tabla-user/tabla-user.component
 import { DireccionComponent } from './Components/direccion/direccion.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { CrearComponent } from './Components/crear/crear.component';
-import {PanelModule} from 'primeng/panel';
-import {FieldsetModule} from 'primeng/fieldset';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { PanelModule } from 'primeng/panel';
+import { FieldsetModule } from 'primeng/fieldset';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
     ButtonModule,
     PanelModule,
     FieldsetModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

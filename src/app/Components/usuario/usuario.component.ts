@@ -4,6 +4,8 @@ import { SelectItem } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
 import { UserModel } from 'src/app/model/userModel';
+import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-usuario',
@@ -15,7 +17,6 @@ export class UsuarioComponent implements OnInit {
   user = new UserModel();
   form: FormGroup;
   cities1: SelectItem[];
-  asigCities1: SelectItem[];
 
   selectedCity1: City;
   // fecha
@@ -34,28 +35,30 @@ export class UsuarioComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       id: new FormControl(null),
-      nombre: ['', [Validators.required,Validators.pattern(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/)]],
-      apellido: ['', [Validators.required,Validators.pattern(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/)]],
-      tipo_documento: ['', Validators.required],
-      numero: ['', Validators.required],
-      fecha_expediccion: ['', Validators.required],
-      fecha_nacimiento: ['', Validators.required],
-      lugar_nacimiento: ['', Validators.required],
-      edad: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.pattern(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/)]],
+      apellido: ['', [Validators.required, Validators.pattern(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/)]],
+      tipo_documento: ['', [Validators.required]],
+      numero: ['', [Validators.required, Validators.pattern(/^([0-9])*$/)]
+      ],
+      fecha_expediccion: ['', [Validators.required]],
+      fecha_nacimiento: ['', [Validators.required]],
+      lugar_nacimiento: ['', [Validators.required]],
+      edad: ['', [Validators.required, Validators.pattern(/^([0-9])*$/)]]
+
     });
 
     this.cities1 = [
       { label: 'Seleccione tipo del documento', value: null },
-      { label: 'Cedula', value: { id: 1, name: 'Cedula', code: 'NY' } },
-      { label: 'Tarjeta de identidad', value: { id: 2, name: 'Tarjeta de identidad', code: 'RM' } },
-      { label: 'Pasaporte', value: { id: 3, name: 'Pasaporte', code: 'LDN' } }
+      { label: 'Cedula', value: 'NY' },
+      { label: 'Tarjeta de identidad', value: 'RM' },
+      { label: 'Pasaporte', value: 'LDN' }
     ];
 
     this.lugar1 = [
       { label: 'Seleccione el lugar de recidencia', value: null },
-      { label: 'Medellin', value: { id: 1, name: 'Medellin', code: 'M' } },
-      { label: 'Bogota', value: { id: 2, name: 'Bogota', code: 'B' } },
-      { label: 'Otro', value: { id: 3, name: 'Otro', code: 'O' } }
+      { label: 'Medellin', value: 'M' },
+      { label: 'Bogota', value: 'B' },
+      { label: 'Otro', value: 'O' }
     ];
 
   }
@@ -66,24 +69,25 @@ export class UsuarioComponent implements OnInit {
     if (id !== 'nuevo') {
       this._serviceUser.consultarPorId(id).subscribe(resp => {
         this.user = resp;
-        this.asigCities1 = this.cities1.filter(tipoD => {
+        const asigCities1 = this.cities1.filter(tipoD => {
           if (tipoD.label === this.user.tipo_documento) {
             return tipoD;
+
+
           }
         });
-        this.form.get('tipo_documento').setValue(this.asigCities1);
+        this.form.get('tipo_documento').setValue(asigCities1[0].value);
         this.form.get('numero').setValue(this.user.numero);
         this.form.get('nombre').setValue(this.user.nombre);
         this.form.get('apellido').setValue(this.user.apellido);
         this.form.get('fecha_nacimiento').setValue(this.user.fecha_nacimiento);
-        this.Asinglugar1 = this.lugar1.filter(lugarNacimiento => {
+        const Asinglugar1 = this.lugar1.filter(lugarNacimiento => {
           if (lugarNacimiento.label === this.user.lugar_nacimiento) {
-        console.log(lugarNacimiento);
-        this.form.get('lugar_nacimiento').setValue(lugarNacimiento);
+            console.log(lugarNacimiento);
             return lugarNacimiento;
           }
         });
-        console.log(this.Asinglugar1);
+        this.form.get('lugar_nacimiento').setValue(Asinglugar1[0].value);
         this.form.get('fecha_expediccion').setValue(this.user.fecha_expediccion);
         this.form.get('edad').setValue(this.user.edad);
 
@@ -100,10 +104,21 @@ export class UsuarioComponent implements OnInit {
 
   guardarUser() {
     if (this.form.valid) {
+      
       if (this.user.id) {
-        this._serviceUser.updateServUser(this.user).subscribe(resp => {
-          console.log('actualizo');
-        });
+        console.log('actualizo');
+        console.log(this.user);
+
+
+        // this._serviceUser.updateServUser(this.user).subscribe(resp => {
+        //   // Swal.fire({
+        //   //   position: 'top-end',
+        //   //   type: 'success',
+        //   //   title: 'Actualizo satisfactoriamente',
+        //   //   showConfirmButton: false,
+        //   //   timer: 1500
+        //   // });
+        // });
 
       } else {
         const userData = new UserModel();
@@ -119,15 +134,43 @@ export class UsuarioComponent implements OnInit {
         console.log(userData);
         this._serviceUser.crearServUsuario(userData).subscribe(data => {
           console.log('guardo');
+          this.user.tipo_documento = data.tipo_documento;
+          this.user.id = data.id;
+          this.user.nombre = data.nombre;
+          this.user.apellido = data.apellido;
+          this.user.fecha_nacimiento = data.fecha_nacimiento;
+          this.user.lugar_nacimiento = data.lugar_nacimiento;
+          this.user.fecha_expediccion = data.fecha_expediccion;
+          this.user.edad = data.edad;
+
+          Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: 'GUardo satisfactoriamente',
+            showConfirmButton: false,
+            timer: 1500
+          });
         });
       }
 
 
     } else {
-
-      console.log('guardo');
+      this.calcularFecha();
+      Swal.fire({
+        position: 'top-end',
+        type: 'warning',
+        title: 'Ingrese los datos de registro solicitadas',
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
 
+  }
+
+  calcularFecha(){
+    const fehcMoment = moment('9/8/2019', 'MM/DD/YYYY').add(1, 'day');
+  const fechaActual = new Date();
+  console.log(fehcMoment);
   }
 
 }

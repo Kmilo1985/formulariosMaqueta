@@ -8,6 +8,8 @@
                     <div class="p-col-3">
                         <span class="ui-float-label">
                             <p-dropdown id="tipo_documento" formControlName="tipo_documento" [options]="cities1"></p-dropdown>
+                        <p-message *ngIf="form.controls['tipo_documento'].invalid" severity="error" text="Seleciones una opción"></p-message>
+
                         </span>
                     </div>
 
@@ -16,7 +18,7 @@
                         <!-- <input type="text" pInputText placeholder="Username" class="ng-dirty ng-invalid"> -->
                         <input  [ngClass]="{'ng-invalid': !form.controls['numero'].valid }" formControlName="numero" type="text" size="30" pInputText>
                         <label for="float-input">Nùmero de documento</label>
-                        <p-message *ngIf="form.controls['numero'].invalid" severity="error" text="Field is required"></p-message>
+                        <p-message *ngIf="form.controls['numero'].invalid" severity="error" text="Ingrese solo números"></p-message>
                         </span>
                     </div>
 
@@ -24,8 +26,8 @@
                     <div class="p-col-3">
                         <span class="ui-float-label">
                             <input formControlName="nombre" type="text" size="30" pInputText>
+                            <p-message *ngIf="form.controls['nombre'].invalid" severity="error" text="Ingrese el nombre"></p-message>
                             <label for="float-input">Nombres</label>
-                        <p-message *ngIf="form.controls['nombre'].invalid" severity="error" text="Field is required"></p-message>
 
                         </span>
                     </div>
@@ -34,7 +36,7 @@
                         <span class="ui-float-label">
                             <input formControlName="apellido" type="text" size="30" pInputText>
                             <label for="float-input">Apellidos</label>
-                        <p-message *ngIf="form.controls['apellido'].invalid" severity="error" text="Field is required"></p-message>
+                        <p-message *ngIf="form.controls['apellido'].invalid" severity="error" text="Ingrese  apellidos"></p-message>
 
                         </span>
                     </div>
@@ -68,7 +70,7 @@
                         <span class="ui-float-label">
                             <input type="number" size="30" pInputText formControlName="edad">
                             <label for="float-input">Edad</label>
-                        <p-message *ngIf="form.controls['edad'].invalid" severity="error" text="Field is required"></p-message>
+                        <p-message *ngIf="form.controls['edad'].invalid" severity="error" text="Ingrese solo nùmeros"></p-message>
 
                         </span>
                     </div>
@@ -79,4 +81,4 @@
 
     </div>
 
-</form>
+</form>y
