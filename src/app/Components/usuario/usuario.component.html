@@ -59,7 +59,7 @@
 
                     <div class="p-col-3">
                         <span class="ui-float-label">
-                            <p-calendar formControlName="fecha_expediccion"></p-calendar>
+                            <p-calendar formControlName="fecha_expediccion" onChange="calcularFecha()"></p-calendar>
                             <label for="float-input">Fecha de expediccion</label>
                         <p-message *ngIf="form.controls['fecha_expediccion'].invalid" severity="error" text="Field is required"></p-message>
 
@@ -68,7 +68,7 @@
 
                     <div class="p-col-3">
                         <span class="ui-float-label">
-                            <input type="number" size="30" pInputText formControlName="edad">
+                            <input type="number" size="30" [disabled]="disabledEdad" pInputText formControlName="edad">
                             <label for="float-input">Edad</label>
                         <p-message *ngIf="form.controls['edad'].invalid" severity="error" text="Ingrese solo nùmeros"></p-message>
 

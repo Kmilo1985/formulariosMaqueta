@@ -6,6 +6,7 @@ import { UserService } from 'src/app/Services/user.service';
 import { UserModel } from 'src/app/model/userModel';
 import Swal from 'sweetalert2';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-usuario',
@@ -21,6 +22,7 @@ export class UsuarioComponent implements OnInit {
   selectedCity1: City;
   // fecha
   value: Date;
+  public disabledEdad = true;
 
   // lugar de nacimiento
   lugar1: SelectItem[];
@@ -43,8 +45,12 @@ export class UsuarioComponent implements OnInit {
       fecha_expediccion: ['', [Validators.required]],
       fecha_nacimiento: ['', [Validators.required]],
       lugar_nacimiento: ['', [Validators.required]],
-      edad: ['', [Validators.required, Validators.pattern(/^([0-9])*$/)]]
+      edad: ['']
 
+    });
+
+    this.form.valueChanges.subscribe( data =>{
+      this.calcularFecha();
     });
 
     this.cities1 = [
@@ -104,7 +110,7 @@ export class UsuarioComponent implements OnInit {
 
   guardarUser() {
     if (this.form.valid) {
-      
+
       if (this.user.id) {
         console.log('actualizo');
         console.log(this.user);
@@ -155,7 +161,7 @@ export class UsuarioComponent implements OnInit {
 
 
     } else {
-      this.calcularFecha();
+      // this.calcularFecha();
       Swal.fire({
         position: 'top-end',
         type: 'warning',
@@ -168,10 +174,55 @@ export class UsuarioComponent implements OnInit {
   }
 
   calcularFecha(){
-    const fehcMoment = moment('9/8/2019', 'MM/DD/YYYY').add(1, 'day');
-  const fechaActual = new Date();
-  console.log(fehcMoment);
+  //   // const fehcMoment = moment().utc().format('DD/MM/YYYY');
+  //   // const fechaActual = new Date();
+  //   // return null;
+
+  //   // console.log(this);
+  //   // calculo la edad
+  //   const today: Date = new Date();
+  //   // const birthDate: ;
+  //   const age: number = today.getFullYear() - birthDate.getFullYear();
+  //   console.log(age);
+
   }
+  get aliases() {
+    return this.form.get('form') as FormGroup;
+  }
+
+  get nombre() {
+    return this.form.get('nombre');
+  }
+
+  get apellido() {
+    return this.form.get('apellido');
+  }
+
+  get tipoDocumento() {
+    return this.form.get('tipo_documento');
+  }
+
+  get numero() {
+    return this.form.get('numero');
+  }
+
+  get fechaExpedicion() {
+    return this.form.get('fecha_expediccion');
+  }
+
+  get fechaNacimiento() {
+    return this.form.get('fecha_nacimiento');
+  }
+
+  get edad() {
+    return this.form.get('edad');
+  }
+
+
+
+
+
+
 
 }
 interface City {
