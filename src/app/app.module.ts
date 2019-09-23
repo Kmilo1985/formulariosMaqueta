@@ -30,6 +30,7 @@ import { CrearComponent } from './Components/crear/crear.component';
 import { PanelModule } from 'primeng/panel';
 import { FieldsetModule } from 'primeng/fieldset';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     PanelModule,
     FieldsetModule,
     DynamicDialogModule,
-    
+    DialogModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

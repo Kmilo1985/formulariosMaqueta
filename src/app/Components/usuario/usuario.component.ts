@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,8 @@ import { UserModel } from 'src/app/model/userModel';
 import Swal from 'sweetalert2';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
+import { UTILIDADES } from '../constantes/constantes'
+import { DireccionModel } from 'src/app/model/direccionModel';
 
 @Component({
   selector: 'app-usuario',
@@ -15,14 +17,23 @@ import { Observable } from 'rxjs';
 })
 
 export class UsuarioComponent implements OnInit {
+  @Input() idUsuario: number;
+
+  public idInputUsario: number;
   user = new UserModel();
   form: FormGroup;
-  cities1: SelectItem[];
+  documentos: SelectItem[];
+  public es = UTILIDADES.es;
+  public Maxedad = UTILIDADES.OTROS;
+  public minFecha: Date;
+  public maxFecha: Date;
+
+
+  public validarFecha = false;
 
   selectedCity1: City;
   // fecha
   value: Date;
-  public disabledEdad = true;
 
   // lugar de nacimiento
   lugar1: SelectItem[];
@@ -33,7 +44,7 @@ export class UsuarioComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private _serviceUser: UserService
+    private _serviceUser: UserService,
   ) {
     this.form = this.fb.group({
       id: new FormControl(null),
@@ -48,12 +59,13 @@ export class UsuarioComponent implements OnInit {
       edad: ['']
 
     });
+    this.form.get('edad').disable();
 
-    this.form.valueChanges.subscribe( data =>{
-      this.calcularFecha();
-    });
+    // this.form.valueChanges.subscribe( data =>{
+    //   this.calcularFecha();
+    // });
 
-    this.cities1 = [
+    this.documentos = [
       { label: 'Seleccione tipo del documento', value: null },
       { label: 'Cedula', value: 'NY' },
       { label: 'Tarjeta de identidad', value: 'RM' },
@@ -71,95 +83,79 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit() {
     const id: any = this.route.snapshot.paramMap.get('id'); // leer id de el URL  PARA ESO SE USA ESTE METODO
-
     if (id !== 'nuevo') {
       this._serviceUser.consultarPorId(id).subscribe(resp => {
         this.user = resp;
-        const asigCities1 = this.cities1.filter(tipoD => {
-          if (tipoD.label === this.user.tipo_documento) {
-            return tipoD;
 
-
-          }
-        });
-        this.form.get('tipo_documento').setValue(asigCities1[0].value);
+        this.form.get('tipo_documento').setValue(this.user.tipo_documento);
         this.form.get('numero').setValue(this.user.numero);
         this.form.get('nombre').setValue(this.user.nombre);
         this.form.get('apellido').setValue(this.user.apellido);
-        this.form.get('fecha_nacimiento').setValue(this.user.fecha_nacimiento);
-        const Asinglugar1 = this.lugar1.filter(lugarNacimiento => {
-          if (lugarNacimiento.label === this.user.lugar_nacimiento) {
-            console.log(lugarNacimiento);
-            return lugarNacimiento;
-          }
-        });
-        this.form.get('lugar_nacimiento').setValue(Asinglugar1[0].value);
-        this.form.get('fecha_expediccion').setValue(this.user.fecha_expediccion);
+        const fechaNac = new Date(this.user.fecha_nacimiento);
+        this.form.get('fecha_nacimiento').setValue(fechaNac);
+        const fechaExpe = new Date(this.user.fecha_expediccion);
+        this.form.get('fecha_expediccion').setValue(fechaExpe);
+        this.form.get('lugar_nacimiento').setValue(this.user.lugar_nacimiento);
         this.form.get('edad').setValue(this.user.edad);
-
       });
     }
 
   }
 
-  handleClick() {
-    console.log(this.form.value);
-  }
-
-
-
   guardarUser() {
+    let user = new UserModel();
+
+    // valido formulario
     if (this.form.valid) {
+      // valido fecha
+      this.calcularFecha();
+      if (this.validarFecha) {
+        // valido si se actualiza 
+        this.user.tipo_documento = this.form.get('tipo_documento').value;
+        this.user.numero = this.form.get('numero').value;
+        this.user.nombre = this.form.get('nombre').value;
+        this.user.apellido = this.form.get('apellido').value;
+        let FormatoNac = new Date(this.form.get('fecha_nacimiento').value);
+        this.user.fecha_nacimiento = this.form.get('fecha_nacimiento').value;
+        this.user.fecha_expediccion = moment(this.form.get('fecha_expediccion').value).format('DD-MM-YYYY');
+        this.user.lugar_nacimiento = this.form.get('lugar_nacimiento').value;
+        this.user.edad = this.form.get('edad').value;
 
-      if (this.user.id) {
-        console.log('actualizo');
-        console.log(this.user);
+        if (this.user.id) {
 
-
-        // this._serviceUser.updateServUser(this.user).subscribe(resp => {
-        //   // Swal.fire({
-        //   //   position: 'top-end',
-        //   //   type: 'success',
-        //   //   title: 'Actualizo satisfactoriamente',
-        //   //   showConfirmButton: false,
-        //   //   timer: 1500
-        //   // });
-        // });
-
-      } else {
-        const userData = new UserModel();
-
-        userData.tipo_documento = this.form.get('tipo_documento').value;
-        userData.numero = this.form.get('numero').value;
-        userData.nombre = this.form.get('nombre').value;
-        userData.apellido = this.form.get('apellido').value;
-        userData.fecha_nacimiento = this.form.get('fecha_nacimiento').value;
-        userData.lugar_nacimiento = this.form.get('lugar_nacimiento').value;
-        userData.fecha_expediccion = this.form.get('fecha_expediccion').value;
-        userData.edad = this.form.get('edad').value;
-        console.log(userData);
-        this._serviceUser.crearServUsuario(userData).subscribe(data => {
-          console.log('guardo');
-          this.user.tipo_documento = data.tipo_documento;
-          this.user.id = data.id;
-          this.user.nombre = data.nombre;
-          this.user.apellido = data.apellido;
-          this.user.fecha_nacimiento = data.fecha_nacimiento;
-          this.user.lugar_nacimiento = data.lugar_nacimiento;
-          this.user.fecha_expediccion = data.fecha_expediccion;
-          this.user.edad = data.edad;
-
-          Swal.fire({
-            position: 'top-end',
-            type: 'success',
-            title: 'GUardo satisfactoriamente',
-            showConfirmButton: false,
-            timer: 1500
+          this._serviceUser.updateServUser(this.user).subscribe(resp => {
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Actualizo satisfactoriamente',
+              showConfirmButton: false,
+              timer: 1500
+            });
           });
+        } else {
+
+          user = this.user;
+          this._serviceUser.crearServUsuario(user).subscribe(data => {
+
+            this.user.id = data.id;
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Guardo satisfactoriamente',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          });
+        }
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'Ingrese los una edad mayor a 18 años',
+          showConfirmButton: false,
+          timer: 1500
         });
       }
-
-
     } else {
       // this.calcularFecha();
       Swal.fire({
@@ -170,21 +166,43 @@ export class UsuarioComponent implements OnInit {
         timer: 1500
       });
     }
-
   }
 
-  calcularFecha(){
-  //   // const fehcMoment = moment().utc().format('DD/MM/YYYY');
-  //   // const fechaActual = new Date();
-  //   // return null;
 
-  //   // console.log(this);
-  //   // calculo la edad
-  //   const today: Date = new Date();
-  //   // const birthDate: ;
-  //   const age: number = today.getFullYear() - birthDate.getFullYear();
-  //   console.log(age);
 
+  calcularFecha() {
+    if (this.form.get('fecha_nacimiento').value) {
+      const datos = this.form.get('fecha_nacimiento').value;
+      const today = new Date();
+      const age: number = today.getFullYear() - datos.getFullYear();
+      if (age >= 18) {
+        this.minFecha = datos;
+        const formato = new Date(moment(today).format('YYYY-MM-DD'));
+        this.maxFecha = new Date(formato);
+        this.form.get('edad').setValue(age);
+        this.validarFecha = true;
+      } else {
+        this.form.get('edad').setValue('');
+
+        Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'Debe ser mayor de edad',
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+      }
+    } else {
+      Swal.fire({
+        position: 'top-end',
+        type: 'warning',
+        title: 'iNGRESA UNA EDAD ADECUADA',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+    }
   }
   get aliases() {
     return this.form.get('form') as FormGroup;

@@ -1,290 +1,92 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "usuario": [
-    {
-      "id": 1,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 2,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 3,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 4,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 5,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 6,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 7,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 8,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 9,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 10,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 11,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 12,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 13,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 14,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 15,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 16,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 17,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 18,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 19,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 20,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 21,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 22,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 23,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 24,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 25,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 26,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    },
-    {
-      "id": 27,
-      "name": "some comment",
-      "lastname": "",
-      "direccion_ip": "102.54.94.97",
-      "email": "correo13@gmail.com"
-    }
-  ],
-  "heroes": [
-    {
-      "nombre": "Aquaman",
-      "bio": "El poder más reconocido de Aquaman es la capacidad telepática para comunicarse con la vida marina, la cual puede convocar a grandes distancias.",
-      "img": "assets/img/aquaman.png",
-      "aparicion": "1941-11-01",
-      "casa": "DC"
-    },
-    {
-      "nombre": "Batman",
-      "bio": "Los rasgos principales de Batman se resumen en «destreza física, habilidades deductivas y obsesión». La mayor parte de las características básicas de los cómics han variado por las diferentes interpretaciones que le han dado al personaje.",
-      "img": "assets/img/batman.png",
-      "aparicion": "1939-05-01",
-      "casa": "DC"
-    },
-    {
-      "nombre": "Daredevil",
-      "bio": "Al haber perdido la vista, los cuatro sentidos restantes de Daredevil fueron aumentados por la radiación a niveles superhumanos, en el accidente que tuvo cuando era niño. A pesar de su ceguera, puede \"ver\" a través de un \"sexto sentido\" que le sirve como un radar similar al de los murciélagos.",
-      "img": "assets/img/daredevil.png",
-      "aparicion": "1964-01-01",
-      "casa": "Marvel"
-    },
-    {
-      "nombre": "Hulk",
-      "bio": "Su principal poder es su capacidad de aumentar su fuerza hasta niveles prácticamente ilimitados a la vez que aumenta su furia. Dependiendo de qué personalidad de Hulk esté al mando en ese momento (el Hulk Banner es el más débil, pero lo compensa con su inteligencia).",
-      "img": "assets/img/hulk.png",
-      "aparicion": "1962-05-01",
-      "casa": "Marvel"
-    },
-    {
-      "nombre": "Linterna Verde",
-      "bio": "Poseedor del anillo de poder que posee la capacidad de crear manifestaciones de luz sólida mediante la utilización del pensamiento. Es alimentado por la Llama Verde (revisada por escritores posteriores como un poder místico llamado Starheart), una llama mágica contenida en dentro de un orbe (el orbe era en realidad un meteorito verde de metal que cayó a la Tierra, el cual encontró un fabricante de lámparas llamado Chang)",
-      "img": "assets/img/linterna-verde.png",
-      "aparicion": "1940-06-01",
-      "casa": "DC"
-    },
-    {
-      "nombre": "Spider-Man",
-      "bio": "Tras ser mordido por una araña radiactiva, obtuvo los siguientes poderes sobrehumanos, una gran fuerza, agilidad, poder trepar por paredes. La fuerza de Spider-Man le permite levantar 10 toneladas o más. Gracias a esta gran fuerza Spider-Man puede realizar saltos íncreibles. Un \"sentido arácnido\", que le permite saber si un peligro se cierne sobre él, antes de que suceda. En ocasiones este puede llevar a Spider-Man al origen del peligro.",
-      "img": "assets/img/spiderman.png",
-      "aparicion": "1962-08-01",
-      "casa": "Marvel"
-    },
-    {
-      "nombre": "Wolverine",
-      "bio": "En el universo ficticio de Marvel, Wolverine posee poderes regenerativos que pueden curar cualquier herida, por mortal que ésta sea, además ese mismo poder hace que sea inmune a cualquier enfermedad existente en la Tierra y algunas extraterrestres . Posee también una fuerza sobrehumana, que si bien no se compara con la de otros superhéroes como Hulk, sí sobrepasa la de cualquier humano.",
-      "img": "assets/img/wolverine.png",
-      "aparicion": "1974-11-01",
-      "casa": "Marvel"
-    }
-  ],
   "user": [
     {
       "id": 2,
       "nombre": "Kmilo",
       "apellido": "Paniagua",
-      "tipo_documento": "Cedula",
+      "tipo_documento": "NY",
       "numero": "8061975",
-      "fecha_expediccion": "12/06/2019",
-      "fecha_nacimiento": "12/06/2019",
-      "lugar_nacimiento": "Medellin",
-      "edad": "23"
+      "fecha_expediccion": "2002-12-11",
+      "fecha_nacimiento": "1970-06-23T05:00:00.000Z",
+      "lugar_nacimiento": "M",
+      "edad": 49
     },
     {
-      "tipo_documento": {
-        "id": 1,
-        "name": "Cedula",
-        "code": "NY"
-      },
-      "numero": "77777",
-      "nombre": "wewerwereww",
-      "apellido": "werwerwerwerw",
-      "fecha_nacimiento": "2019-09-17T05:00:00.000Z",
-      "lugar_nacimiento": {
-        "id": 2,
-        "name": "Bogota",
-        "code": "B"
-      },
-      "fecha_expediccion": "2019-09-09T05:00:00.000Z",
-      "edad": 44,
-      "id": 3
+      "tipo_documento": "NY",
+      "numero": "32495588",
+      "nombre": "KMILO",
+      "apellido": "MUÑOZ",
+      "fecha_nacimiento": "1962-06-18T05:00:00.000Z",
+      "lugar_nacimiento": "M",
+      "fecha_expediccion": "2019-12-06",
+      "edad": 57,
+      "id": 4
+    },
+    {
+      "tipo_documento": "NY",
+      "numero": "6677676",
+      "nombre": "hghghg",
+      "apellido": "hghgh",
+      "fecha_nacimiento": "1981/09/10",
+      "fecha_expediccion": "2019/09/12",
+      "lugar_nacimiento": "M",
+      "edad": 38,
+      "id": 5
+    },
+    {
+      "tipo_documento": "NY",
+      "numero": "53242342",
+      "nombre": "hghghg",
+      "apellido": "hghgh",
+      "fecha_nacimiento": "1981/09/10",
+      "fecha_expediccion": "2019/09/12",
+      "lugar_nacimiento": "M",
+      "edad": 38,
+      "id": 6
+    },
+    {
+      "tipo_documento": "NY",
+      "numero": "555555555555566666666",
+      "nombre": "asdasda",
+      "apellido": "sasdadas",
+      "fecha_nacimiento": "1980/09/17",
+      "fecha_expediccion": "2019/09/20",
+      "lugar_nacimiento": "M",
+      "edad": 39,
+      "id": 7
+    },
+    {
+      "tipo_documento": "NY",
+      "numero": "32495588",
+      "nombre": "MARIA",
+      "apellido": "GIMENEXZ",
+      "fecha_nacimiento": "1984-09-19T05:00:00.000Z",
+      "fecha_expediccion": "2019-09-10",
+      "lugar_nacimiento": "M",
+      "edad": 35,
+      "id": 8
+    },
+    {
+      "tipo_documento": "NY",
+      "numero": "444444477",
+      "nombre": "asdadasd",
+      "apellido": "asdasd",
+      "fecha_nacimiento": "1983-09-21T05:00:00.000Z",
+      "fecha_expediccion": "2019-09-21",
+      "lugar_nacimiento": "M",
+      "edad": 36,
+      "id": 9
+    },
+    {
+      "tipo_documento": "NY",
+      "numero": "2324",
+      "nombre": "sdsad",
+      "apellido": "asdasd",
+      "fecha_nacimiento": "1961-09-14T05:00:00.000Z",
+      "fecha_expediccion": "2019-09-11",
+      "lugar_nacimiento": "M",
+      "edad": 58,
+      "id": 10
     }
   ],
   "contacto": [
@@ -311,6 +113,18 @@
       "letra2": "dasda",
       "letra3": "dasda",
       "observaciones": "dasda"
+    },
+    {
+      "barrio": "yy",
+      "tipo": "yy",
+      "via": "yy",
+      "letra": "yy",
+      "letra2": "y",
+      "letra3": "y",
+      "observaciones": "y",
+      "formatoDireccion": "yyyyyyyy#yyy",
+      "user_id": 1,
+      "id": 3
     }
   ],
   "referencias": [
@@ -328,8 +142,5 @@
       "telefono": "",
       "tipo": "asd"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

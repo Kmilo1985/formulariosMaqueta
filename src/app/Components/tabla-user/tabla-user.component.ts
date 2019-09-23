@@ -24,7 +24,6 @@ export class TablaUserComponent implements OnInit {
   }
   listarUser() {
     this._serviceUser.listarUsuario().subscribe(data => {
-      console.log(data);
       this.listData = data;
     });
   }

@@ -3,28 +3,11 @@
 
         <p-fieldset legend="Lista de usuaios">
             <div class="p-grid vertical-container">
-                <div class="ui-g-6">
-                    <div class="ui-g-3 ui-md-4">
-                        <div class="ui-inputgroup">
-                            <input type="text" pInputText placeholder="Direccion">
-                            <button pButton type="button" icon="fa fa-superpowers" class="ui-button-warn"></button>
-                        </div>
-                    </div>
-                    <div class="ui-g-3 ui-md-4 ">
-                        <div class="ui-inputgroup">
-                            <input type="text" pInputText placeholder="Telefono">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="p-col-12">
-                <div class="ui-g-3 ">
-
-                    <p>Direcciones registradas</p>
-                </div>
-                <div class="ui-g-3 ui-md-offset-6 ">
-                    <button pButton type="button" label="Agregar"></button>
+                <div class="p-col p-col-align-start">
+                    <p class="box">
+                        <button pButton type="button" label="Crear" routerLink="/crear"></button>
+                    </p>
+                    <button type="button" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show"></button>
                 </div>
 
             </div>
@@ -55,11 +38,10 @@
             </div>
         </p-fieldset>
 
+        <!-- modal -->
+        <p-dialog header="Title" [(visible)]="direccionVer" [style]="{width: '300px', height: '200px'}">
 
-        <!-- modal agregar referencia -->
+        </p-dialog>
 
-        <!-- <p-toast [style]="{marginTop: '80px'}"></p-toast>
-
-        <button type="button" (click)="show()" pButton icon="pi pi-info-circle" label="Show"></button> -->
     </div>
 </div>

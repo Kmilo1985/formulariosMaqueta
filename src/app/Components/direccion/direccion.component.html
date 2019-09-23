@@ -1,74 +1,86 @@
 <form [formGroup]="form">
 
-    <div class="form-row">
-
-
-        <div class="form-row">
-            <div class="col-md-12 mb-12">
-                <label for="validationTooltip03"><small>SU DIRECION ES</small> </label>
-                <input formControlName="valor" type="email" class="form-control form-control-sm" disabled>
-
-            </div>
-
-
-            <div class="col-md-3 mb-3">
-                <label for="validationTooltip04"><small>Letra</small></label>
-                <input [ngClass]="{'is-invalid': !form.controls['letra1'].valid }" formControlName="letra1" type="text" class="form-control">
-
-
-                <div class="invalid-feedback">
-                    Please provide a valid state.
-                </div>
-            </div>
-
-
-            <div class="col-md-2 mb-2">
-                <label for="validationTooltip03"><small>NUMERO</small></label>
-                <input [ngClass]="{'is-invalid': !form.controls['numero1'].valid }" formControlName="numero1" type="text" class="form-control">
-
-
-                <div class="invalid-feedback">
-                    Please provide a valid city.
-                </div>
-            </div>
-
-            <div class="col-md-2 mb-2">
-                <label for="validationTooltip05"><small>Letra</small></label>
-                <input [ngClass]="{'is-invalid': !form.controls['letra2'].valid }" formControlName="letra2" type="text" class="form-control">
-
-
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
-            </div>
-            <div class="col-1">
-                <label for="validationTooltip05"><small>NUMERO</small></label>
-                <input [ngClass]="{'is-invalid': !form.controls['numero2'].valid }" formControlName="numero2" type="text" class="form-control">
-
-
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
-            </div>
-            <div class="col-md-2 mb-2">
-                <label for="validationTooltip05"><small>Letra</small></label>
-                <input [ngClass]="{'is-invalid': !form.controls['letra3'].valid }" formControlName="letra3" type="text" class="form-control">
-
-
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
-            </div>
-            <div class="col-1">
-                <label for="validationTooltip05"><small>NUMERO</small></label>
-                <input [ngClass]="{'is-invalid': !form.controls['numero3'].valid }" formControlName="numero3" type="text" class="form-control">
-
-
-                <div class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
-            </div>
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <label for="validationTooltip03"><small>SU DIRECION ES</small> </label>
+            <input formControlName="formatoDireccion" type="email" class="form-control form-control-sm" disabled>
         </div>
-    </div>
+        <br><br>
 
+        <div class="ui-g-6">
+            <span class="ui-float-label">
+                <input formControlName="barrio" type="text" class="form-control" pInputText>
+                <p-message *ngIf="form.get('barrio').hasError('required')" severity="error" text="Campo requerido">
+                </p-message>
+                <p-message *ngIf="form.controls['barrio'].hasError('pattern')" severity="error"
+                    text="Ingrese solo letras"></p-message>
+                <label for="float-input">Barrio</label>
+            </span>
+        </div>
+        <div class="ui-g-6">
+            <span class="ui-float-label">
+                <input formControlName="tipo" type="text" class="form-control" pInputText>
+                <p-message *ngIf="form.get('tipo').hasError('required')" severity="error" text="Campo requerido">
+                </p-message>
+                <p-message *ngIf="form.controls['tipo'].hasError('pattern')" severity="error"
+                    text="Ingrese solo letras"></p-message>
+                <label for="float-input">Tipo</label>
+            </span>
+        </div>
+        <div class="ui-g-4">
+            <span class="ui-float-label">
+                <input formControlName="via" type="text" class="form-control" pInputText>
+                <p-message *ngIf="form.get('via').hasError('required')" severity="error" text="Campo requerido">
+                </p-message>
+                <p-message *ngIf="form.controls['via'].hasError('pattern')" severity="error"
+                    text="Ingrese solo letras"></p-message>
+                <label for="float-input">Via</label>
+            </span>
+        </div>
+        <div class="ui-g-4">
+            <span class="ui-float-label">
+                <label for="validationTooltip05"><small>NUMERO</small></label>
+                <input formControlName="letra" type="text" class="form-control" pInputText>
+                <p-message *ngIf="form.get('letra').hasError('required')" severity="error" text="Campo requerido">
+                </p-message>
+                <p-message *ngIf="form.controls['letra'].hasError('pattern')" severity="error"
+                    text="Ingrese solo letras"></p-message>
+                <label for="float-input">Letra</label>
+            </span>
+        </div>
+        <div class="ui-g-4">
+            <span class="ui-float-label">
+                    <label for="validationTooltip05"><small>NUMERO</small></label>
+                    <input formControlName="letra2" type="text" class="form-control" pInputText>
+                    <p-message *ngIf="form.get('letra2').hasError('required')" severity="error" text="Campo requerido">
+                    </p-message>
+                    <p-message *ngIf="form.controls['letra2'].hasError('pattern')" severity="error"
+                        text="Ingrese solo letras"></p-message>
+                    <label for="float-input">Letra2</label>
+                </span>
+        </div>
+        <div class="ui-g-6">
+            <span class="ui-float-label">
+                    <label for="validationTooltip05"><small>NUMERO</small></label>
+                    <input formControlName="letra3" type="text" class="form-control" pInputText>
+                    <p-message *ngIf="form.get('letra3').hasError('required')" severity="error" text="Campo requerido">
+                    </p-message>
+                    <p-message *ngIf="form.controls['letra3'].hasError('pattern')" severity="error"
+                        text="Ingrese solo letras"></p-message>
+                    <label for="float-input">Letra3</label>
+                </span>
+        </div>
+
+        <div class="ui-g-6">
+            <span class="ui-float-label">
+                <input formControlName="observaciones" type="text" class="form-control" pInputText>
+                <p-message *ngIf="form.get('observaciones').hasError('required')" severity="error"
+                    text="Campo requerido">
+                </p-message>
+                <label for="float-input">Observaciones</label>
+            </span>
+        </div>
+
+    </div>
+    <button pButton type="button" label="Agregar" (click)="guardarDireccion()"></button>
 </form>

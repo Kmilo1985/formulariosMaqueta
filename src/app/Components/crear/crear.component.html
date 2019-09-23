@@ -10,9 +10,10 @@
 
             <p-tabPanel header="Información basica" leftIcon="pi pi-calendar">
                 <app-usuario></app-usuario>
+
             </p-tabPanel>
             <p-tabPanel header="Contacto" leftIcon="pi pi-inbox">
-                <app-contacto></app-contacto>
+                <app-contacto [idUsuarioContac]="inIdUsuario"></app-contacto>
             </p-tabPanel>
             <p-tabPanel header="Referencias" leftIcon="pi pi-user" rightIcon="pi pi-star">
                 <app-referencia></app-referencia>

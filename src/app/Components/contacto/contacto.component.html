@@ -1,41 +1,82 @@
 <div class="p-grid">
     <div class="p-col-12">
+        <form [formGroup]="formDirec">
 
-        <p-fieldset legend="Lista de usuaios">
-            <div class="p-grid vertical-container">
-                <div class="p-col p-col-align-start">
-                    <p class="box">
-                        <button pButton type="button" label="Crear" routerLink="/crear"></button>
-                    </p>
+            <p-fieldset legend="Lista de usuaios">
+                <div class="p-grid vertical-container">
+                    <div class="ui-g-6">
+                        <div class="ui-g-3 ui-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-float-label">
+                                <input type="text" pInputText formControlName="formatoDireccion">
+                                <button pButton type="button" icon="fa fa-superpowers" icon="pi pi-plus" (click)="showDialog()"></button>
+                                <label for="float-input">Direccion</label>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="ui-g-3">
+                            <span class="ui-float-label">
+                            <input formControlName="telefono" type="text" size="30" pInputText>
+                            <label for="float-input">telefonos</label>
+                            <br>
+                            <br>
+                            <p-message *ngIf="formDirec.get('telefono').hasError('required')" severity="error" text="Campo requerido">
+                            </p-message>
+                        </span>
+                        </div>
+                    </div>
+
                 </div>
+                <button pButton type="button" label="Guardar direccion" (click)="guardarDireccion()"></button>
 
-            </div>
-            <div class="p-col-12">
+                <div class="p-col-12">
+                    <div class="ui-g-3 ">
 
-                <p-table [value]="null">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
+                        <p>Direcciones registradas</p>
+                    </div>
+                    <div class="ui-g-3 ui-md-offset-6 ">
+                        <button pButton type="button" label="Agregar"></button>
+                    </div>
 
-                            <th>Accion</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-listData>
-                        <tr>
-                            <td>{{ listData.nombre }}</td>
-                            <td>{{ listData.apellido }}</td>
-                            <td>{{ listData.numero }}</td>
-                            <td>
-                                <button [routerLink]="['/crear',listData.id]" class="ui-button-warning" pButton type="button" icon="pi pi-check" label="Editar"></button>
-                                <button class="ui-button-danger" pButton type="button" icon="pi pi-check" label="Eliminar"></button>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+                </div>
+                <div class="p-col-12">
 
-            </div>
-        </p-fieldset>
+                    <p-table [value]="listaDirecionesUser">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Direccion</th>
+                                <th>Barrio</th>
+                                <th>Telefono</th>
+                                <th>Accion</th>
 
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-direccion>
+                            <tr>
+                                <td>{{ direccion.formatoDireccion }}</td>
+                                <td>{{ direccion.barrio }}</td>
+                                <td>{{ direccion.telefono }}</td>
+                                <td>
+                                    <button [routerLink]="['/crear',direccion.id]" class="ui-button-warning" pButton type="button" icon="pi pi-check" label="Editar"></button>
+                                    <button class="ui-button-danger" pButton type="button" icon="pi pi-check" label="Eliminar"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                </div>
+            </p-fieldset>
+
+
+            <!-- modal agregar referencia -->
+
+            <!-- <p-toast [style]="{marginTop: '80px'}"></p-toast>
+    
+            <button type="button" (click)="show()" pButton icon="pi pi-info-circle" label="Show"></button> -->
+        </form>
     </div>
+    <!-- modal -->
+    <p-dialog header="Title" [(visible)]="direccionVer" [style]="{width: '300px', height: '200px'}">
+        <app-direccion (direccionOut)="listaDireciones($event)"></app-direccion>
+    </p-dialog>
 </div>
