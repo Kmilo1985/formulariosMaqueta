@@ -5,7 +5,7 @@ export class DireccionModel {
     user_id: number;
     barrio: string;
     telefono: string;
-    tipo: string;
+    tipo: number;
     via: string;
     letra: string;
     letra2: string;

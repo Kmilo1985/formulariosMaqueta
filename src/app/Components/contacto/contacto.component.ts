@@ -23,7 +23,11 @@ export class ContactoComponent implements OnInit {
     private fb: FormBuilder) {
     this.formDirec = this.fb.group({
       formatoDireccion: ['', null],
-      telefono: ['', Validators.required],
+      telefono: ['',
+        [Validators.required,
+        Validators.pattern(/^([0-9])*$/)// solo numeros
+        ]
+      ],
     });
 
     this.formDirec.get('formatoDireccion').disable();
@@ -51,7 +55,7 @@ export class ContactoComponent implements OnInit {
   traerDirecciones() {
     this._direcionService.listarDireccionesUser().subscribe(data => {
       this.listaDirecionesUser = data;
-    })
+    });
   }
 
   listaDireciones(event: DireccionModel) {
@@ -62,11 +66,13 @@ export class ContactoComponent implements OnInit {
     // this.formDirec.get('formatoDireccion').setValidators.required(null)
     Swal.fire({
       position: 'top-end',
-      type: 'warning',
-      title: 'Debes Completa el formulario',
+      type: 'success',
+      title: 'Direccion Agregada',
       showConfirmButton: false,
       timer: 1500
     });
+    this.closeDialog();
+
 
   }
 
@@ -76,9 +82,10 @@ export class ContactoComponent implements OnInit {
 
 
       if (this.direccionModel.formatoDireccion) {
-        console.log(this.direccionModel);
+        this.direccionModel.telefono = this.formDirec.get('telefono').value;
         this._direcionService.guardarDireccionUser(this.direccionModel).subscribe(data => {
-
+          console.log(data);
+          this.traerDirecciones();
           Swal.fire({
             position: 'center',
             type: 'success',
@@ -113,8 +120,40 @@ export class ContactoComponent implements OnInit {
     }
   }
 
+
+  EliminarData(data: DireccionModel) {
+    console.log(data);
+
+
+    Swal.fire({
+      title: 'Esta seguro?',
+      text: "Desea eliminar este registro",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Deleted!',
+          'Se elimino correctamente',
+          'success'
+        );
+        this._direcionService.eliminarDireccionUser(data).subscribe(data => {
+          console.log('Elimino');
+          this.traerDirecciones();
+        });
+
+      }
+    });
+  }
+
   showDialog() {
     this.direccionVer = true;
   }
 
+  closeDialog() {
+    this.direccionVer = false;
+  }
 }

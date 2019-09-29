@@ -8,21 +8,26 @@
                         <div class="ui-g-3 ui-md-4">
                             <div class="ui-inputgroup">
                                 <span class="ui-float-label">
-                                <input type="text" pInputText formControlName="formatoDireccion">
-                                <button pButton type="button" icon="fa fa-superpowers" icon="pi pi-plus" (click)="showDialog()"></button>
-                                <label for="float-input">Direccion</label>
-                            </span>
+                                    <input type="text" pInputText formControlName="formatoDireccion">
+                                    <button pButton type="button" icon="fa fa-superpowers" icon="pi pi-plus"
+                                        (click)="showDialog()"></button>
+                                    <label for="float-input">Direccion</label>
+                                </span>
                             </div>
                         </div>
                         <div class="ui-g-3">
                             <span class="ui-float-label">
-                            <input formControlName="telefono" type="text" size="30" pInputText>
-                            <label for="float-input">telefonos</label>
-                            <br>
-                            <br>
-                            <p-message *ngIf="formDirec.get('telefono').hasError('required')" severity="error" text="Campo requerido">
-                            </p-message>
-                        </span>
+                                <input formControlName="telefono" type="text" size="30" pInputText>
+                                <label for="float-input">telefonos</label>
+                                <br>
+                                <br>
+                                <p-message *ngIf="formDirec.get('telefono').hasError('required')" severity="error"
+                                    text="Campo requerido">
+                                </p-message>
+                                <p-message *ngIf="formDirec.controls['telefono'].hasError('pattern')" severity="error"
+                                    text="Ingrese solo letras">
+                                </p-message>
+                            </span>
                         </div>
                     </div>
 
@@ -41,7 +46,7 @@
                 </div>
                 <div class="p-col-12">
 
-                    <p-table [value]="listaDirecionesUser">
+                    <p-table [value]="listaDirecionesUser" dataKey="4567" [paginator]="true" [rows]="10">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>Direccion</th>
@@ -53,12 +58,25 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-direccion>
                             <tr>
-                                <td>{{ direccion.formatoDireccion }}</td>
+                                <td>
+                                    <a href="#" [pRowToggler]="direccion">
+                                        <i [ngClass]="direccion.id ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                                    </a>
+                                </td>
+
+                                <td>{{ direccion.id }}</td>
                                 <td>{{ direccion.barrio }}</td>
                                 <td>{{ direccion.telefono }}</td>
                                 <td>
                                     <button [routerLink]="['/crear',direccion.id]" class="ui-button-warning" pButton type="button" icon="pi pi-check" label="Editar"></button>
-                                    <button class="ui-button-danger" pButton type="button" icon="pi pi-check" label="Eliminar"></button>
+                                    <button class="ui-button-danger" pButton type="button" icon="pi pi-check" label="Eliminar" (click)="EliminarData(direccion)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                            <tr>
+                                <td>
+                                    <app-direccion (direccionOut)="listaDireciones($event)"></app-direccion>
                                 </td>
                             </tr>
                         </ng-template>

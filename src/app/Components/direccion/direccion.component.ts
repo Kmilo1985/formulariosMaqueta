@@ -32,7 +32,7 @@ export class DireccionComponent implements OnInit {
       ]],
       tipo: ['', [
         Validators.required, ,
-        Validators.pattern(/^[A-Za-z\_\-\.\s\xF1\xD1]+$/)
+        Validators.pattern(/^([0-9])*$/)//solo numeros
       ]],
       via: ['', [
         Validators.required, ,

@@ -20,4 +20,9 @@ export class DireccionService {
   guardarDireccionUser(direccion: DireccionModel): Observable<DireccionModel> {
     return this.http.post<DireccionModel>(this.urlApi, direccion);
   }
+
+   // GURADAR DIRECCION DE USUARIO
+   eliminarDireccionUser(direccion: DireccionModel): Observable<DireccionModel> {
+    return this.http.delete<DireccionModel>(this.urlApi + direccion.id);
+  }
 }

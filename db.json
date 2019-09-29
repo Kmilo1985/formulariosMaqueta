@@ -91,40 +91,30 @@
   ],
   "contacto": [
     {
-      "id": 1,
+      "barrio": "66",
+      "tipo": "66",
+      "via": "g",
+      "letra": "g",
+      "letra2": "g",
+      "letra3": "g",
+      "observaciones": "g",
+      "formatoDireccion": "6666gg#ggg",
       "user_id": 1,
-      "telefono": "",
-      "barrio": "dad",
-      "tipo": "asd",
-      "via": "true",
-      "letra": "dasda",
-      "letra2": "dasda",
-      "letra3": "dasda",
-      "observaciones": "dasda"
+      "telefono": "323423",
+      "id": 6
     },
     {
-      "id": 2,
-      "user_id": 2,
-      "telefono": "",
-      "barrio": "dad",
-      "tipo": "asd",
-      "via": "true",
-      "letra": "dasda",
-      "letra2": "dasda",
-      "letra3": "dasda",
-      "observaciones": "dasda"
-    },
-    {
-      "barrio": "yy",
-      "tipo": "yy",
-      "via": "yy",
-      "letra": "yy",
-      "letra2": "y",
-      "letra3": "y",
-      "observaciones": "y",
-      "formatoDireccion": "yyyyyyyy#yyy",
+      "barrio": "66",
+      "tipo": "66",
+      "via": "g",
+      "letra": "g",
+      "letra2": "g",
+      "letra3": "g",
+      "observaciones": "g",
+      "formatoDireccion": "6666gg#ggg",
       "user_id": 1,
-      "id": 3
+      "telefono": "3234236",
+      "id": 7
     }
   ],
   "referencias": [
